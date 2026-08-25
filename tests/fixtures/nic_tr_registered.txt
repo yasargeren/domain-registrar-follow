@@ -1,0 +1,23 @@
+** Domain Name: ORNEK2.COM.TR
+
+** Registrant:
+   Ornek Bilisim A.S.
+   Address         : Ornek Mah. Test Cad. No:1
+                     Istanbul,34000
+                     Turkey
+   Phone           : +90-212-0000000
+   Fax             :
+
+** Registrar:
+NIC Handle             : orn1-nic-tr
+Organization Name      : Ornek Kayit Kurulusu A.S.
+Address                : Istanbul, Turkey
+Phone                  : +90-212-1111111
+
+** Domain Servers:
+ns1.ornekdns.com
+ns2.ornekdns.com
+
+** Additional Info:
+Created on..............: 2019-Mar-12.
+Expires on..............: 2026-Mar-12.

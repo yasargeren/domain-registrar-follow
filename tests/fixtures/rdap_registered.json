@@ -1,0 +1,22 @@
+{
+  "objectClassName": "domain",
+  "handle": "1234567_DOMAIN_COM-VRSN",
+  "ldhName": "ORNEK.COM",
+  "status": ["clientTransferProhibited", "redemptionPeriod"],
+  "events": [
+    {"eventAction": "registration", "eventDate": "2018-05-04T10:00:00Z"},
+    {"eventAction": "expiration", "eventDate": "2026-05-04T10:00:00Z"},
+    {"eventAction": "last changed", "eventDate": "2026-06-20T10:00:00Z"}
+  ],
+  "entities": [
+    {
+      "objectClassName": "entity",
+      "roles": ["registrar"],
+      "vcardArray": ["vcard", [["version", {}, "text", "4.0"], ["fn", {}, "text", "Ornek Registrar, Inc."]]]
+    }
+  ],
+  "nameservers": [
+    {"objectClassName": "nameserver", "ldhName": "NS1.EXAMPLE.COM"},
+    {"objectClassName": "nameserver", "ldhName": "NS2.EXAMPLE.COM"}
+  ]
+}

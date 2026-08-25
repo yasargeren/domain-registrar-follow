@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(python3 -m app.cli status)",
+      "Bash(python3 -m app.cli check:*)",
+      "Bash(python3 -m app.cli check-all)",
+      "Bash(python3 -m app.cli history:*)",
+      "Bash(python3 -m app.cli attempts:*)",
+      "Bash(python3 -m app.cli config)",
+      "Bash(python3 -m app.cli stop)",
+      "Bash(python3 -m unittest:*)",
+      "Bash(make test)",
+      "Bash(make status)",
+      "Bash(docker compose ps)",
+      "Bash(docker compose logs:*)"
+    ],
+    "ask": [
+      "Bash(python3 -m app.cli dry-run:*)",
+      "Bash(python3 -m app.cli test-alerts)",
+      "Bash(python3 -m app.cli resume)",
+      "Bash(docker compose up:*)",
+      "Bash(docker compose down:*)",
+      "Bash(git push:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./data/domains.db)",
+      "Bash(python3 -m app.cli register:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/guard-registration.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

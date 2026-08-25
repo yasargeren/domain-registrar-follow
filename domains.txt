@@ -1,0 +1,4 @@
+# İzlenen domainler (referans). Çalışma zamanı kaynağı .env içindeki DOMAINS değişkenidir.
+ornek1.com.tr
+ornek2.com.tr
+ornek.com
