@@ -2,14 +2,23 @@
 
 🇬🇧 [English README](README.en.md)
 
-`ornek1.com.tr`, `ornek2.com.tr` ve `ornek.com` domainlerinin registrar/registry
-durumunu 7/24 izler, yasam dongusu degisimlerinde (expiry → grace → redemption →
-pendingDelete → drop) Telegram + e-posta uyarisi gonderir ve domain serbest
-kaldiginda kayit surecini yurutur.
+Baskasinin uzerine kayitli domainlerin registrar/registry durumunu 7/24 izler,
+yasam dongusu degisimlerinde (expiry → grace → redemption → pendingDelete →
+drop) Telegram + e-posta uyarisi gonderir ve domain serbest kaldiginda kayit
+surecini yurutur. Izlenecek domainler `.env` icindeki `DOMAINS` degiskeniyle
+sen belirlersin — `ornek1.com.tr`, `ornek2.com.tr`, `ornek.com` sadece ornek
+degerlerdir.
 
 > **Onemli:** Bu depo *fail-closed* tasarlanmistir. Varsayilan ayarlarla hicbir
 > satin alma yapmaz. Canli kayit icin bilincli olarak birden fazla guvenlik
 > kapisinin acilmasi gerekir (asagida "Guvenlik kapilari").
+>
+> **TLD kapsami:** Uygulama **sadece `.com` ve `.com.tr` (`.tr`)** domainlerini
+> izler. Bu ikisi disinda bir TLD (`.net`, `.org`, `.io`, `.co`, vb.) `DOMAINS`
+> icine eklenirse izleme calismaz — `providers/registry.py` bilinmeyen TLD
+> icin `NotConfigured` hatasi firlatir (fail-closed, sessizce yanlis sonuc
+> uretmez). Baska TLD destegi icin yeni bir provider yazilmasi gerekir; bu
+> depo bunun icin **hicbir garanti vermez**.
 
 ## Icindekiler
 
@@ -31,7 +40,7 @@ kaldiginda kayit surecini yurutur.
 
 | Yapar | Yapmaz |
 |---|---|
-| `.com` icin Verisign RDAP ile EPP durum takibi | Registry/registrar limitlerini asmaz |
+| `.com` icin Verisign RDAP ile EPP durum takibi | **Sadece `.com` ve `.com.tr` destekler** — baska TLD icin izleme garantisi vermez |
 | `.com.tr` icin TRABIS WHOIS (port 43) takibi | Web formu kazimaz, CAPTCHA asmaz |
 | Duruma gore degisen poll araligi (15dk / 5dk / 1dk) | Uydurma API endpoint'i cagirmaz |
 | Telegram + e-posta + webhook uyarilari | Drop-catch garantisi vermez |
@@ -209,7 +218,7 @@ basliklar:
 
 | Grup | Degiskenler | Not |
 |---|---|---|
-| Genel | `DOMAINS`, `DB_PATH`, `LOG_PATH`, `TZ` | varsayilanlar bu 3 domain icin hazir |
+| Genel | `DOMAINS`, `DB_PATH`, `LOG_PATH`, `TZ` | `DOMAINS`'e sadece `.com` / `.com.tr` (`.tr`) domaini yaz — baska TLD `NotConfigured` hatasi verir |
 | Poll araliklari | `POLL_NORMAL_SECONDS`, `POLL_EXPIRING_SECONDS`, `POLL_CRITICAL_SECONDS` | duruma gore otomatik secilir |
 | .com izleme | `RDAP_BASE_URL` | Verisign RDAP, kimlik gerektirmez |
 | .com.tr izleme | `WHOIS_TR_HOST=whois.trabis.gov.tr`, `WHOIS_TR_MIN_INTERVAL` | port 43, rate limit'e saygili |

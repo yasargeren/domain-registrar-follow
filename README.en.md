@@ -2,16 +2,25 @@
 
 🇹🇷 [Türkçe README](README.md)
 
-Monitors the registrar/registry status of `ornek1.com.tr`, `ornek2.com.tr` and
-`ornek.com` (domains currently registered to someone else), tracks their
-lifecycle transitions (expiry → grace → redemption → pendingDelete → drop),
-sends Telegram + email alerts on every critical transition, and drives the
-registration process once a domain becomes free.
+Monitors the registrar/registry status of domains currently registered to
+someone else, tracks their lifecycle transitions (expiry → grace →
+redemption → pendingDelete → drop), sends Telegram + email alerts on every
+critical transition, and drives the registration process once a domain
+becomes free. You choose which domains to watch via the `DOMAINS` variable in
+`.env` — `ornek1.com.tr`, `ornek2.com.tr`, `ornek.com` are just placeholder
+example values.
 
 > **Important:** this repository is designed **fail-closed**. With default
 > settings it never purchases anything. Live registration requires
 > deliberately opening several independent safety gates (see "Safety gates"
 > below).
+>
+> **TLD coverage:** this tool monitors **only `.com` and `.com.tr` (`.tr`)**
+> domains. Adding any other TLD (`.net`, `.org`, `.io`, `.co`, etc.) to
+> `DOMAINS` will not work — `providers/registry.py` raises `NotConfigured`
+> for an unrecognized TLD (fail-closed, it never silently produces a wrong
+> answer). Supporting another TLD requires writing a new provider; this
+> repository makes **no guarantee** for anything outside `.com` / `.com.tr`.
 
 ## Contents
 
@@ -33,7 +42,7 @@ registration process once a domain becomes free.
 
 | Does | Doesn't |
 |---|---|
-| Tracks EPP status for `.com` via Verisign RDAP | Never exceeds registry/registrar rate limits |
+| Tracks EPP status for `.com` via Verisign RDAP | **Supports only `.com` and `.com.tr`** — no monitoring guarantee for any other TLD |
 | Tracks `.com.tr` via TRABIS WHOIS (port 43) | Never scrapes web forms or bypasses CAPTCHA/anti-bot |
 | Adaptive poll interval by state (15min / 5min / 1min) | Never calls a made-up API endpoint |
 | Telegram + email + webhook alerts | Gives no drop-catch guarantee |
@@ -209,7 +218,7 @@ Every value is documented with an inline comment in that file. Key groups:
 
 | Group | Variables | Note |
 |---|---|---|
-| General | `DOMAINS`, `DB_PATH`, `LOG_PATH`, `TZ` | defaults are already set for these 3 domains |
+| General | `DOMAINS`, `DB_PATH`, `LOG_PATH`, `TZ` | only put `.com` / `.com.tr` (`.tr`) domains in `DOMAINS` — any other TLD raises `NotConfigured` |
 | Poll intervals | `POLL_NORMAL_SECONDS`, `POLL_EXPIRING_SECONDS`, `POLL_CRITICAL_SECONDS` | picked automatically by state |
 | `.com` monitoring | `RDAP_BASE_URL` | Verisign RDAP, no credentials needed |
 | `.com.tr` monitoring | `WHOIS_TR_HOST=whois.trabis.gov.tr`, `WHOIS_TR_MIN_INTERVAL` | port 43, rate-limit friendly |
