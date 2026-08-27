@@ -1,0 +1,22 @@
+{
+  "objectClassName": "domain",
+  "handle": "9999999_DOMAIN_COM-VRSN",
+  "ldhName": "ORNEK.COM",
+  "status": ["auto renew period"],
+  "events": [
+    {"eventAction": "registration", "eventDate": "2025-08-27T10:24:31Z"},
+    {"eventAction": "expiration", "eventDate": "2027-08-27T10:24:31Z"},
+    {"eventAction": "last changed", "eventDate": "2026-08-27T14:30:16Z"}
+  ],
+  "entities": [
+    {
+      "objectClassName": "entity",
+      "roles": ["registrar"],
+      "vcardArray": ["vcard", [["version", {}, "text", "4.0"], ["fn", {}, "text", "Ornek Registrar, Inc."]]]
+    }
+  ],
+  "nameservers": [
+    {"objectClassName": "nameserver", "ldhName": "NS1.EXAMPLE.COM"},
+    {"objectClassName": "nameserver", "ldhName": "NS2.EXAMPLE.COM"}
+  ]
+}

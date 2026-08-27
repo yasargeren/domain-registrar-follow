@@ -23,7 +23,7 @@ from .config import (
 )
 from .logging_setup import setup
 from .notify import active_channels, notify
-from .providers import registry
+from .providers import rdap, registry
 from .providers.base import Inconclusive, NotConfigured, RateLimited, tld_of
 
 log = setup("monitor")
@@ -85,6 +85,9 @@ def check_once(domain):
             )
             if drop:
                 body += f"\nTahmini dusme (drop) : {drop['drop_expected']}\n(bilgi amacli tahmin)\n"
+            dual_note = rdap.format_dual_source(result.extra)
+            if dual_note:
+                body += f"\n{dual_note}\n"
             if state == lifecycle.AVAILABLE:
                 body += "\nHEMEN KAYIT GEREKIYOR."
             notify(

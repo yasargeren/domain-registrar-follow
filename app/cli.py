@@ -25,7 +25,7 @@ from .config import (
 )
 from .logging_setup import setup
 from .notify import active_channels, notify
-from .providers import registry
+from .providers import rdap, registry
 from .providers.base import tld_of
 
 log = setup("cli")
@@ -82,6 +82,9 @@ def _check(domain):
         print(f"  tahmini redemption : {drop['redemption_expected'][:10]}")
         print(f"  tahmini pendingDel : {drop['pending_delete_expected'][:10]}")
         print(f"  tahmini drop       : {drop['drop_expected'][:10]}  (tahmin)")
+    dual_note = rdap.format_dual_source(result.extra)
+    if dual_note:
+        print(f"  {dual_note.replace(chr(10), chr(10) + '  ')}")
     return state
 
 

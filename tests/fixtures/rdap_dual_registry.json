@@ -1,0 +1,26 @@
+{
+  "objectClassName": "domain",
+  "handle": "9999999_DOMAIN_COM-VRSN",
+  "ldhName": "ORNEK.COM",
+  "status": ["active"],
+  "events": [
+    {"eventAction": "registration", "eventDate": "2025-08-27T10:24:31Z"},
+    {"eventAction": "expiration", "eventDate": "2026-08-27T10:24:31Z"},
+    {"eventAction": "last changed", "eventDate": "2025-08-27T10:24:31Z"}
+  ],
+  "entities": [
+    {
+      "objectClassName": "entity",
+      "roles": ["registrar"],
+      "vcardArray": ["vcard", [["version", {}, "text", "4.0"], ["fn", {}, "text", "Ornek Registrar, Inc."]]]
+    }
+  ],
+  "nameservers": [
+    {"objectClassName": "nameserver", "ldhName": "NS1.EXAMPLE.COM"},
+    {"objectClassName": "nameserver", "ldhName": "NS2.EXAMPLE.COM"}
+  ],
+  "links": [
+    {"value": "self", "rel": "self", "href": "https://rdap.example-registry.com/domain/ornek.com", "type": "application/rdap+json"},
+    {"value": "related", "rel": "related", "href": "https://rdap.example-registrar.com/domain/ORNEK.COM", "type": "application/rdap+json"}
+  ]
+}
